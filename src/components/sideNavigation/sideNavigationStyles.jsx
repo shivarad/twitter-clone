@@ -13,21 +13,6 @@ cursor:pointer;
 }
 `
 
-export const TwitterIcon=styled.button`
-color:${Colors.Blue};
-font-size:30px;
-height:50px;
-width:50px;
-border-radius:50%;
-padding:10px;
-cursor:pointer;
-background:none;
-border:none;
-&:hover{
-    background:${Colors.LightBlue}
-}
-
-`
 
 export const TweetButton=styled.button`
 color:white;

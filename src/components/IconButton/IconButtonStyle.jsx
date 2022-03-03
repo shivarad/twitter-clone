@@ -6,15 +6,15 @@ display:flex;
 align-items:center;
 justify-content:flex-start;
 gap:15px;
-font-size:25px;
+font-size:${(props)=>(props.isAction?`20px`:`25px`)};;
 background:none;
 border:none;
-color:${Colors.Black};
+color:${(props)=>(props.isBlue?Colors.Blue:Colors.Black)};
 padding:10px;
-border-radius:50px;
-height:50px;
+border-radius:${(props)=>(props.isAction?`40px`:`50px`)};
+height:${(props)=>(props.isAction?`40px`:`50px`)};;
+min-width:${(props)=>(props.isAction?`40px`:`50px`)};;
 width:fit-content;
-min-width:50px;
 text-transform:capitalize;
 cursor:pointer;
 & span{
@@ -22,10 +22,11 @@ cursor:pointer;
     padding-right:20px;
     @media screen and (max-width:1280px){
         display:none;
+        padding:0;
     }
 }
 &:hover{
-    background:${Colors.ExtraLightGray}
+    background:${props=>!props.isBlue?Colors.ExtraLightGray:Colors.LightBlue}
 }
 
 `

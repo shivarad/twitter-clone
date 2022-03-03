@@ -1,6 +1,7 @@
 
    
 import { createGlobalStyle } from "styled-components";
+import { Colors } from "./colors";
 
 export const GlobalStyles = createGlobalStyle`
   *,
@@ -15,6 +16,7 @@ export const GlobalStyles = createGlobalStyle`
         font-size: 16px;
         min-height: 100vh;
         min-height: -webkit-fill-available;
+        color:${Colors.Black}
 }
     html {
         height: -webkit-fill-available;
