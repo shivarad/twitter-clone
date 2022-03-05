@@ -11,9 +11,9 @@ top:0;
 height:60px;
 width:100%;
 color:${Colors.Black};
-background: #FFF, 
-box-shadow: rgb(31 38 135, 0.37 ) 
-backdrop-filter: blur(9.0px);
+background: rgba( 255, 255, 255, 0.7 );
+box-shadow: rgb(31 38 135, 0.37 ) ;
+backdrop-filter: blur(9.4px);
 padding:15px;
 `
 

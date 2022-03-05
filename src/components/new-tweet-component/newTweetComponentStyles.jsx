@@ -8,16 +8,6 @@ width:100%;
 border-bottom:1px solid ${Colors.DoubleExtraLightGray};
 `
 
-export const Avatar=styled.div`
-height:50px;
-width:50px;
-border-radius:50px;
-background-image:url(${props=>(props.profileImg)});
-margin-left:10px;
-overflow:hidden;
-cursor:pointer;
-
-`
 
 export const TweetContainer=styled.div`
 display:flex;

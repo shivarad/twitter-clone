@@ -1,6 +1,5 @@
 import {
   TweetComponent,
-  Avatar,
   TweetContainer,
   TweetBox,
   TweetActions,
@@ -11,16 +10,20 @@ import { RiFileGifLine } from "react-icons/ri";
 import { BiPoll } from "react-icons/bi";
 import { AiOutlineSchedule } from "react-icons/ai";
 import IconButton from "../IconButton/IconButton";
-import ReactTooltip from "react-tooltip";
+import { useState } from "react";
+import Avatar from "../Avatar/Avatar";
 
-const NewTweetComponent = () => {
+const NewTweetComponent = ({addTweet}) => {
+  const [tweet,setTweet]=useState("");
   return (
     <TweetComponent>
-      <Avatar profileImg="http://placeimg.com/50/50/animals" />
+      <Avatar image={"https://placeimg.com/40/40/animals"} />
       <TweetContainer>
         <TweetBox
           placeholder="What's happening?"
           contenteditable="true"
+          value={tweet}
+          onChange={e=>setTweet(e.target.value)}
         ></TweetBox>
         <TweetActions>
           <div>
@@ -28,64 +31,40 @@ const NewTweetComponent = () => {
               icon={<FaRegImage />}
               blue="true"
               action="true"
-              data-tip="Media"
-              data-for="media"
+              tooltip="Media"
             ></IconButton>
-            <ReactTooltip
-              id="media"
-              place="bottom"
-              type="dark"
-              effect="solid"
-            />
+            
 
             <IconButton
               icon={<RiFileGifLine />}
               blue="true"
               action="true"
-              data-tip="GIF"
-              data-for="gif"
+              tooltip="GIF"
             ></IconButton>
-            <ReactTooltip id="gif" place="bottom" type="dark" effect="solid" />
 
             <IconButton
               icon={<BiPoll />}
               blue="true"
               action="true"
-              data-tip="Poll"
-              data-for="poll"
+              tooltip="Poll"
             ></IconButton>
-            <ReactTooltip id="poll" place="bottom" type="dark" effect="solid" />
 
             <IconButton
               icon={<FaRegSmile />}
               blue="true"
               action="true"
-              data-tip="Emoji"
-              data-for="emoji"
+              tooltip="Emoji"
             ></IconButton>
-            <ReactTooltip
-              id="emoji"
-              place="bottom"
-              type="dark"
-              effect="solid"
-            />
 
             <IconButton
               icon={<AiOutlineSchedule />}
               blue="true"
               action="true"
-              data-tip="Schedule"
-              data-for="schedule"
+              tooltip="Schedule"
             ></IconButton>
-            <ReactTooltip
-              id="Schedule"
-              place="bottom"
-              type="dark"
-              effect="solid"
-            />
+ 
           </div>
-
-          <TweetButton>Tweet</TweetButton>
+            <TweetButton onClick={()=>{addTweet(tweet);setTweet("")}}>Tweet</TweetButton>
         </TweetActions>
       </TweetContainer>
     </TweetComponent>

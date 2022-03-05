@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Colors } from "../../styles/colors";
+import ReactTooltip from "react-tooltip";
 
 export const Button=styled.button`
 display:flex;
@@ -29,4 +30,9 @@ cursor:pointer;
     background:${props=>!props.isBlue?Colors.ExtraLightGray:Colors.LightBlue}
 }
 
+`
+
+export const CustomTooltip=styled(ReactTooltip)`
+font-size:12px !important;
+padding:4px !important;
 `
