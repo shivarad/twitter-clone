@@ -6,6 +6,7 @@ const IconButton = ({
   blue = false,
   action = false,
   tooltip = "",
+  onClick={}
 }) => {
   return (
     <>
@@ -14,6 +15,7 @@ const IconButton = ({
         isAction={action}
         data-tip={tooltip}
         data-for={tooltip}
+        onClick={onClick}
       >
         {icon}
         {title && <span>{title}</span>}

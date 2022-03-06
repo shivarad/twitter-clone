@@ -11,6 +11,7 @@ import Tweets from "../../data/tweets.json";
 import { useState } from "react";
 import { nanoid } from "nanoid";
 import TweetComponent from "../../components/Tweetcomponent/TweetComponent";
+import Search from "../../components/SearchComponent/Search";
 
 const HomePage = () => {
   const [tweets, setTweets] = useState(Tweets);
@@ -43,7 +44,9 @@ const HomePage = () => {
             <TweetComponent key={tweet.id} tweet={tweet} />
           ))}
       </TimeLine>
-      <SearchContainer></SearchContainer>
+      <SearchContainer>
+        <Search/>
+      </SearchContainer>
     </PageWrapper>
   );
 };

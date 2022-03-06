@@ -21,6 +21,9 @@ export const GlobalStyles = createGlobalStyle`
     html {
         height: -webkit-fill-available;
 }
-      
+a {
+  color:${Colors.Blue};
+  text-decoration:none;
+}
       
 `

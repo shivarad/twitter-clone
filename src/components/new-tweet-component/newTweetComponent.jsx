@@ -17,7 +17,7 @@ const NewTweetComponent = ({addTweet}) => {
   const [tweet,setTweet]=useState("");
   return (
     <TweetComponent>
-      <Avatar image={"https://placeimg.com/40/40/animals"} />
+      <Avatar image={"https://placeimg.com/50/50/animals"} />
       <TweetContainer>
         <TweetBox
           placeholder="What's happening?"

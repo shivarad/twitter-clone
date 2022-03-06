@@ -4,26 +4,26 @@ import { Colors } from "../../styles/colors";
 export const TweetContainer = styled.div`
   display:flex;
   border-bottom: 1px solid ${Colors.ExtraLightGray};
-  font-size:16px;
-  padding-top:20px;
   cursor:pointer;
+  padding:20px;
   &:hover{
       background:${Colors.DoubleExtraLightGray};
   }
+  
 `;
 export const TweetContent = styled.div`
   display:flex;
   flex-direction: column;
-  color: ${Colors.DarkGray};
+  color: ${Colors.Black};
   flex:1;
-  margin:10px;
+  margin:0 10px;
 
 `;
 export const TweetHeader = styled.div`
 display:flex;
 justify-content:space-between;
 width:100%;
-
+position:relative;
 & p{
     color:${Colors.Black};
     font-weight:bold;
@@ -37,7 +37,7 @@ width:100%;
 export const TweetActions = styled.div`
   display: flex;
   justify-content: space-between;
-  color: ${Colors.LightGray};
+  color: ${Colors.DarkGray};
   max-width:600px;
 
   & span{
@@ -46,6 +46,6 @@ export const TweetActions = styled.div`
   }
   & p{
       font-size:14px;
-      padding:0 5px;
+      padding:0 10px;
   }
 `;

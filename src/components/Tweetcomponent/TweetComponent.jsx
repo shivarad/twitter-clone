@@ -10,34 +10,73 @@ import {
 import Avatar from "../Avatar/Avatar";
 import moment from "moment";
 import { Colors } from "../../styles/colors";
+import reactStringReplace from "react-string-replace";
+import Menu from "../Menu/Menu";
+import { useState } from "react";
+import { nanoid } from "nanoid";
 
 const TweetComponent = ({ tweet }) => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const calculateTimeDiff = () => {
+    let Now = new Date(Date.now());
+    let TweetDate = new Date(tweet.created_on);
+    let Time = Date.now() - TweetDate;
+    let Days = Time / (1000 * 3600 * 24);
+    if (Days < 1) {
+      return moment(tweet.created_on).fromNow();
+    } else {
+      if (Now.getFullYear() === TweetDate.getFullYear())
+        return tweet.created_on.split(" ")[1] + " " + TweetDate.getDay();
+      else
+        return (
+          tweet.created_on.split(" ")[1] +
+          " " +
+          TweetDate.getDay() +
+          ", " +
+          TweetDate.getFullYear()
+        );
+    }
+  };
 
-    const calculateTimeDiff=()=>{
-        let Now=new Date(Date.now())
-        let TweetDate=new Date(tweet.created_on);
-        let Time = Date.now() -TweetDate ; 
-        let Days = Time / (1000 * 3600 * 24);
-    if (Days<1){
-        return moment(tweet.created_on).fromNow()
-    }
-    else {
-        if(Now.getFullYear()===TweetDate.getFullYear())
-            return tweet.created_on.split(" ")[1] +" "+TweetDate.getDay()
-        else 
-            return tweet.created_on.split(" ")[1] +" "+TweetDate.getDay()+", "+TweetDate.getFullYear()
-    }
-    }
+  const TweetReplacing = (text) => {
+    // Match URLs
+    let replacedText = reactStringReplace(
+      text,
+      /(https?:\/\/\S+)/g,
+      (match, i) => (
+        <a key={nanoid()} href={match}>
+          {match}
+        </a>
+      )
+    );
+
+    // Match @-mentions
+    replacedText = reactStringReplace(replacedText, /@(\w+)/g, (match, i) => (
+      <a key={nanoid()} href={`https://twitter.com/${match}`}>
+        @{match}
+      </a>
+    ));
+
+    // Match hashtags
+    replacedText = reactStringReplace(replacedText, /#(\w+)/g, (match, i) => (
+      <a key={nanoid()} href={`https://twitter.com/hashtag/${match}`}>
+        #{match}
+      </a>
+    ));
+    return replacedText;
+  };
   return (
     <TweetContainer>
-      <Avatar image={"https://placeimg.com/40/40/animals"} />
+      <Avatar image={"https://placeimg.com/50/50/people"} />
       <TweetContent>
         <TweetHeader>
           <p>
             {tweet.display_name}
             <span>
               {" @"}
-              {tweet.user}{" . "}{calculateTimeDiff().toString()}
+              {tweet.user}
+              {" . "}
+              {calculateTimeDiff().toString()}
             </span>
           </p>
           <IconButton
@@ -45,9 +84,14 @@ const TweetComponent = ({ tweet }) => {
             blue="true"
             action="true"
             tooltip="More"
+            onClick={(e) => {
+              e.preventDefault();
+              setMenuOpen(true);
+            }}
           />
+          <Menu open={menuOpen} user={tweet.user} setOpen={setMenuOpen} />
         </TweetHeader>
-        <p>{tweet.content}</p>
+        <p>{TweetReplacing(tweet.content)}</p>
         {tweet.imageUrl && (
           <img
             src={tweet.imageUrl}
@@ -57,6 +101,7 @@ const TweetComponent = ({ tweet }) => {
               border: `1px solid ${Colors.LightGray}`,
               borderRadius: "15px",
             }}
+            loading="lazy"
           />
         )}
         <TweetActions>
@@ -65,15 +110,15 @@ const TweetComponent = ({ tweet }) => {
             <p>{tweet.comments_count}</p>
           </span>
           <span>
-            <FaRetweet />
+            <FaRetweet className="green" />
             <p>{tweet.retweets_count}</p>
           </span>
           <span>
-            <FaRegHeart />
+            <FaRegHeart className="red" />
             <p>{tweet.favorites_count}</p>
           </span>
           <span>
-            <MdOutlineFileUpload />
+            <MdOutlineFileUpload className="blue" />
           </span>
         </TweetActions>
       </TweetContent>
