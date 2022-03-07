@@ -14,9 +14,16 @@ import reactStringReplace from "react-string-replace";
 import Menu from "../Menu/Menu";
 import { useState } from "react";
 import { nanoid } from "nanoid";
-
+import users from "../../data/users.json";
+import { useEffect } from "react";
 const TweetComponent = ({ tweet }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    setUser(users.filter((user) => user.user === tweet.user)[0]);
+    console.log(user)
+  }, [user,tweet]);
   const calculateTimeDiff = () => {
     let Now = new Date(Date.now());
     let TweetDate = new Date(tweet.created_on);
@@ -66,12 +73,12 @@ const TweetComponent = ({ tweet }) => {
     return replacedText;
   };
   return (
-    <TweetContainer>
-      <Avatar image={"https://placeimg.com/50/50/people"} />
+    user&&<TweetContainer>
+      <Avatar image={user.profile_picture} />
       <TweetContent>
         <TweetHeader>
           <p>
-            {tweet.display_name}
+            {user.display_name}
             <span>
               {" @"}
               {tweet.user}

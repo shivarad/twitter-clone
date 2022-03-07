@@ -12,17 +12,22 @@ import { useState } from "react";
 import { nanoid } from "nanoid";
 import TweetComponent from "../../components/Tweetcomponent/TweetComponent";
 import Search from "../../components/SearchComponent/Search";
+import BottomNavigation from "../../components/bottomNavigation/bottomNavigation";
 
 const HomePage = () => {
   const [tweets, setTweets] = useState(Tweets);
+  const user={
+    "id": "0",
+    "user": "shivarad",
+    "display_name":"Shiva Rad",
+    "profile_picture":"https://placeimg.com/50/50/people"
+  }
   const addTweet = (tweet) => {
     const newTweet = {
       id: nanoid(),
       created_on: Date(Date.now()),
       content: tweet,
-      imageUrl: "",
       user: "shivarad",
-      display_name: "Shiva Rad",
       comments_count: 0,
       retweets_count: 0,
       favorites_count: 0,
@@ -37,12 +42,13 @@ const HomePage = () => {
       </Navigation>
       <TimeLine>
         <Header title="Home" />
-        <NewTweetComponent addTweet={addTweet} />
+        <NewTweetComponent addTweet={addTweet} user={user} />
         {tweets
           .sort((a, b) => new Date(b.created_on) - new Date(a.created_on))
           .map((tweet) => (
             <TweetComponent key={tweet.id} tweet={tweet} />
           ))}
+          <BottomNavigation/>
       </TimeLine>
       <SearchContainer>
         <Search/>

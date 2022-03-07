@@ -10,14 +10,14 @@ import { RiFileGifLine } from "react-icons/ri";
 import { BiPoll } from "react-icons/bi";
 import { AiOutlineSchedule } from "react-icons/ai";
 import IconButton from "../IconButton/IconButton";
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import Avatar from "../Avatar/Avatar";
 
-const NewTweetComponent = ({addTweet}) => {
+const NewTweetComponent = ({addTweet,user}) => {
   const [tweet,setTweet]=useState("");
   return (
     <TweetComponent>
-      <Avatar image={"https://placeimg.com/50/50/animals"} />
+      <Avatar image={user.profile_picture} />
       <TweetContainer>
         <TweetBox
           placeholder="What's happening?"

@@ -6,6 +6,9 @@ export const TweetComponent=styled.div`
 display:flex;
 width:100%;
 border-bottom:1px solid ${Colors.DoubleExtraLightGray};
+@media screen and (max-width:500px){
+    display:none;
+}
 `
 
 
