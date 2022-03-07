@@ -8,7 +8,7 @@ import Header from "../../components/header/Header";
 import SideNavigation from "../../components/sideNavigation/SideNavigation";
 import NewTweetComponent from "../../components/new-tweet-component/newTweetComponent";
 import Tweets from "../../data/tweets.json";
-import { useState } from "react";
+import {  useState } from "react";
 import { nanoid } from "nanoid";
 import TweetComponent from "../../components/Tweetcomponent/TweetComponent";
 import Search from "../../components/SearchComponent/Search";
@@ -40,13 +40,13 @@ const HomePage = () => {
       <Navigation>
         <SideNavigation />
       </Navigation>
-      <TimeLine>
+      <TimeLine >
         <Header title="Home" />
         <NewTweetComponent addTweet={addTweet} user={user} />
         {tweets
           .sort((a, b) => new Date(b.created_on) - new Date(a.created_on))
           .map((tweet) => (
-            <TweetComponent key={tweet.id} tweet={tweet} />
+            <TweetComponent key={tweet.id} tweet={tweet}  />
           ))}
         <BottomNavigation />
       </TimeLine>

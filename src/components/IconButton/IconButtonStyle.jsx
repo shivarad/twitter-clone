@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import ReactTooltip from "react-tooltip";
-
+import { Colors } from "../../styles/colors";
 export const Button = styled.button`
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   gap: 15px;
   font-size: ${(props) => (props.isAction ? `20px` : `25px`)};
   background: none;
@@ -34,4 +34,18 @@ export const Button = styled.button`
 export const CustomTooltip = styled(ReactTooltip)`
   font-size: 12px !important;
   padding: 4px !important;
+`;
+
+export const BtnContainer = styled.div`
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  &:hover > button {
+    border-radius: ${(props) => (props.isAction ? `40px` : `50px`)};
+    background: ${(props) => props.hover};
+    color: ${(props) => (props.hoverColor ? props.hoverColor : props.color)};
+  }
+  &:hover > span {
+    color: ${(props) => (props.hoverColor ? props.hoverColor : props.color)};
+  }
 `;

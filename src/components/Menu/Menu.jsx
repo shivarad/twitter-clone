@@ -3,12 +3,28 @@ import { RiUserUnfollowLine, RiFlagLine } from "react-icons/ri";
 import { MdPostAdd, MdOutlineBlock } from "react-icons/md";
 import { IoVolumeMuteOutline } from "react-icons/io5";
 import { ImEmbed2 } from "react-icons/im";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaRegFrown } from "react-icons/fa";
 import { IconContext } from "react-icons";
 
-const Menu = ({ open, user, setOpen }) => {
+const Menu = ({ open, user, setOpen, getParentRef }) => {
   const ref = useRef(null);
+  const [dropPosition, setDropPosition] = useState("down");
+
+  useEffect(() => {
+    let parentRef = getParentRef().current;
+    setInterval(() => {
+      if (open) {
+        parentRef.getBoundingClientRect().top > window.innerHeight / 2 &&
+        parentRef.getBoundingClientRect().top !== 0
+          ? setDropPosition("up")
+          : setDropPosition("down");
+      }
+    }, 1000);
+    return () => {
+      clearInterval();
+    };
+  }, [open, getParentRef]);
 
   const OptionClickHandler = () => {
     setOpen(!open);
@@ -28,7 +44,7 @@ const Menu = ({ open, user, setOpen }) => {
   return (
     <>
       {open && (
-        <MenuContainer ref={ref}>
+        <MenuContainer ref={ref} position={dropPosition}>
           <IconContext.Provider value={{ size: "20px" }}>
             <MenuOption onClick={OptionClickHandler}>
               <span>

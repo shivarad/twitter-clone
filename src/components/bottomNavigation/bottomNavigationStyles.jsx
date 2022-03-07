@@ -9,6 +9,7 @@ export const NavigationContainer = styled.div`
   position: sticky;
   height: 60px;
   bottom: 0;
+  z-index:10001;
   background: #fff;
   border-top: 1px solid ${Colors.ExtraLightGray};
   @media screen and (min-width: 500px) {

@@ -15,7 +15,7 @@ export const HeaderContainer = styled.div`
   box-shadow: rgb(31 38 135, 0.37);
   backdrop-filter: blur(9.4px);
   padding: 15px;
-  z-index: 20;
+  z-index: 10001;
 `;
 
 export const Title = styled.h1`

@@ -12,17 +12,23 @@ import moment from "moment";
 import { Colors } from "../../styles/colors";
 import reactStringReplace from "react-string-replace";
 import Menu from "../Menu/Menu";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { nanoid } from "nanoid";
 import users from "../../data/users.json";
 import { useEffect } from "react";
+import { useCallback } from "react";
+
 const TweetComponent = ({ tweet }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [user, setUser] = useState(null);
+  const ref = useRef(null);
+
+  const getRef = useCallback(() => {
+    return ref;
+  }, [ref]);
 
   useEffect(() => {
     setUser(users.filter((user) => user.user === tweet.user)[0]);
-    console.log(user);
   }, [user, tweet]);
   const calculateTimeDiff = () => {
     let Now = new Date(Date.now());
@@ -74,8 +80,13 @@ const TweetComponent = ({ tweet }) => {
   };
   return (
     user && (
-      <div style={{ position: "relative" }}>
-        <Menu open={menuOpen} user={tweet.user} setOpen={setMenuOpen} />
+      <div style={{ position: "relative" }} ref={ref}>
+        <Menu
+          open={menuOpen}
+          user={tweet.user}
+          setOpen={setMenuOpen}
+          getParentRef={getRef}
+        />
         <TweetContainer>
           <Avatar image={user.profile_picture} />
           <TweetContent>
@@ -118,45 +129,40 @@ const TweetComponent = ({ tweet }) => {
               />
             )}
             <TweetActions>
-              <span className="blue">
-                <IconButton
-                  icon={<FaRegComment />}
-                  color={Colors.LightGray}
-                  hover={Colors.LightBlue}
-                  hoverColor={Colors.Blue}
-                  action="true"
-                />
-                {tweet.comments_count}
-              </span>
-              <span className="green">
-                <IconButton
-                  icon={<FaRetweet />}
-                  color={Colors.LightGray}
-                  hover="lightgreen"
-                  hoverColor="green"
-                  action="true"
-                />
-                {tweet.retweets_count}
-              </span>
-              <span className="red">
-                <IconButton
-                  icon={<FaRegHeart />}
-                  color={Colors.LightGray}
-                  hover="lightpink"
-                  hoverColor="red"
-                  action="true"
-                />
-                {tweet.favorites_count}
-              </span>
-              <span className="blue">
-                <IconButton
-                  icon={<MdOutlineFileUpload />}
-                  color={Colors.LightGray}
-                  hover={Colors.LightBlue}
-                  hoverColor={Colors.Blue}
-                  action="true"
-                />
-              </span>
+              <IconButton
+                icon={<FaRegComment />}
+                color={Colors.LightGray}
+                hover={Colors.LightBlue}
+                hoverColor={Colors.Blue}
+                action="true"
+                actionTitle={tweet.comments_count}
+              />
+
+              <IconButton
+                icon={<FaRetweet />}
+                color={Colors.LightGray}
+                hover="lightgreen"
+                hoverColor="green"
+                action="true"
+                actionTitle={tweet.retweets_count}
+              />
+
+              <IconButton
+                icon={<FaRegHeart />}
+                color={Colors.LightGray}
+                hover="lightpink"
+                hoverColor="red"
+                action="true"
+                actionTitle={tweet.favorites_count}
+              />
+
+              <IconButton
+                icon={<MdOutlineFileUpload />}
+                color={Colors.LightGray}
+                hover={Colors.LightBlue}
+                hoverColor={Colors.Blue}
+                action="true"
+              />
             </TweetActions>
           </TweetContent>
         </TweetContainer>

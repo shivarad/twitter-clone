@@ -1,4 +1,4 @@
-import { Button, CustomTooltip } from "./IconButtonStyle";
+import { Button, CustomTooltip, BtnContainer } from "./IconButtonStyle";
 
 const IconButton = ({
   title,
@@ -8,10 +8,11 @@ const IconButton = ({
   hoverColor = "",
   action = false,
   tooltip = "",
-  onClick = {},
+  actionTitle="",
+  onClick = () => {},
 }) => {
   return (
-    <>
+    <BtnContainer hover={hover} color={color} hoverColor={hoverColor}>
       <Button
         hover={hover}
         color={color}
@@ -23,11 +24,13 @@ const IconButton = ({
       >
         {icon}
         {title && <span>{title}</span>}
+
       </Button>
+      {actionTitle && <span>{actionTitle}</span>}
       {tooltip && (
         <CustomTooltip id={tooltip} place="bottom" type="dark" effect="solid" />
       )}
-    </>
+    </BtnContainer>
   );
 };
 

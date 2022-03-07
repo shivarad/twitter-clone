@@ -34,20 +34,5 @@ export const TweetActions = styled.div`
   display: flex;
   justify-content: space-between;
   color: ${Colors.DarkGray};
-  & span {
-    display: flex;
-    font-size: 14px;
-    align-items: center;
-    &:hover {
-      &.blue {
-        color: ${Colors.Blue};
-      }
-      &.red {
-        color: red;
-      }
-      &.green {
-        color: green;
-      }
-    }
-  }
+  font-size:14px;
 `;

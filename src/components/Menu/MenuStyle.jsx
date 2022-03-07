@@ -8,9 +8,11 @@ export const MenuContainer = styled.div`
   box-shadow: 0px 0px 8px #d9d9d9;
   background: white;
   position: absolute;
-  right: 0;
+  bottom:${props=>props.position==="down"?"auto":"70%"};
+  right:0;
   margin: 15px;
   z-index: 10000;
+
 `;
 
 export const MenuOption = styled.div`
