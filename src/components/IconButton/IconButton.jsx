@@ -3,15 +3,19 @@ import { Button, CustomTooltip } from "./IconButtonStyle";
 const IconButton = ({
   title,
   icon,
-  blue = false,
+  hover,
+  color,
+  hoverColor = "",
   action = false,
   tooltip = "",
-  onClick={}
+  onClick = {},
 }) => {
   return (
     <>
       <Button
-        isBlue={blue}
+        hover={hover}
+        color={color}
+        hoverColor={hoverColor}
         isAction={action}
         data-tip={tooltip}
         data-for={tooltip}
@@ -21,8 +25,7 @@ const IconButton = ({
         {title && <span>{title}</span>}
       </Button>
       {tooltip && (
-        <CustomTooltip id={tooltip} place="bottom"
-         type="dark" effect="solid" />
+        <CustomTooltip id={tooltip} place="bottom" type="dark" effect="solid" />
       )}
     </>
   );

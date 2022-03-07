@@ -16,12 +16,12 @@ import BottomNavigation from "../../components/bottomNavigation/bottomNavigation
 
 const HomePage = () => {
   const [tweets, setTweets] = useState(Tweets);
-  const user={
-    "id": "0",
-    "user": "shivarad",
-    "display_name":"Shiva Rad",
-    "profile_picture":"https://placeimg.com/50/50/people"
-  }
+  const user = {
+    id: "0",
+    user: "shivarad",
+    display_name: "Shiva Rad",
+    profile_picture: "https://placeimg.com/50/50/people",
+  };
   const addTweet = (tweet) => {
     const newTweet = {
       id: nanoid(),
@@ -48,10 +48,10 @@ const HomePage = () => {
           .map((tweet) => (
             <TweetComponent key={tweet.id} tweet={tweet} />
           ))}
-          <BottomNavigation/>
+        <BottomNavigation />
       </TimeLine>
       <SearchContainer>
-        <Search/>
+        <Search />
       </SearchContainer>
     </PageWrapper>
   );

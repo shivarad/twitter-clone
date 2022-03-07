@@ -1,5 +1,3 @@
-
-   
 import { createGlobalStyle } from "styled-components";
 import { Colors } from "./colors";
 
@@ -26,4 +24,4 @@ a {
   text-decoration:none;
 }
       
-`
+`;

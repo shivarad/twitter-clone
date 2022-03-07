@@ -4,6 +4,9 @@ import { MdPostAdd, MdOutlineBlock } from "react-icons/md";
 import { IoVolumeMuteOutline } from "react-icons/io5";
 import { ImEmbed2 } from "react-icons/im";
 import { useEffect, useRef } from "react";
+import { FaRegFrown } from "react-icons/fa";
+import { IconContext } from "react-icons";
+
 const Menu = ({ open, user, setOpen }) => {
   const ref = useRef(null);
 
@@ -26,34 +29,58 @@ const Menu = ({ open, user, setOpen }) => {
     <>
       {open && (
         <MenuContainer ref={ref}>
-          <MenuOption onClick={OptionClickHandler} >
-            <RiUserUnfollowLine />
-            Unfollow @{user}
-          </MenuOption>
-          <MenuOption onClick={OptionClickHandler}>
-            <MdPostAdd />
-            Add/Remove @{user} from Lists
-          </MenuOption>
-          <MenuOption onClick={OptionClickHandler}>
-            <IoVolumeMuteOutline />
-            Mute @{user}
-          </MenuOption>
-          <MenuOption onClick={OptionClickHandler}>
-            <IoVolumeMuteOutline />
-            Mute This conversation
-          </MenuOption>
-          <MenuOption onClick={OptionClickHandler}>
-            <MdOutlineBlock />
-            Block @{user}
-          </MenuOption>
-          <MenuOption onClick={OptionClickHandler}>
-            <ImEmbed2 />
-            Embed Tweet
-          </MenuOption>
-          <MenuOption onClick={OptionClickHandler}>
-            <RiFlagLine />
-            Report Tweet
-          </MenuOption>
+          <IconContext.Provider value={{ size: "20px" }}>
+            <MenuOption onClick={OptionClickHandler}>
+              <span>
+                <FaRegFrown />
+              </span>
+              Not intrested in this tweet
+            </MenuOption>
+
+            <MenuOption onClick={OptionClickHandler}>
+              <span>
+                <RiUserUnfollowLine />
+              </span>
+              Unfollow @{user}
+            </MenuOption>
+            <MenuOption onClick={OptionClickHandler}>
+              <span>
+                <MdPostAdd />
+              </span>
+              Add/Remove @{user} from Lists
+            </MenuOption>
+            <MenuOption onClick={OptionClickHandler}>
+              <span>
+                <IoVolumeMuteOutline />
+              </span>
+              Mute @{user}
+            </MenuOption>
+            <MenuOption onClick={OptionClickHandler}>
+              <span>
+                <IoVolumeMuteOutline />
+              </span>
+              Mute This conversation
+            </MenuOption>
+            <MenuOption onClick={OptionClickHandler}>
+              <span>
+                <MdOutlineBlock />
+              </span>
+              Block @{user}
+            </MenuOption>
+            <MenuOption onClick={OptionClickHandler}>
+              <span>
+                <ImEmbed2 />
+              </span>
+              Embed Tweet
+            </MenuOption>
+            <MenuOption onClick={OptionClickHandler}>
+              <span>
+                {" "}
+                <RiFlagLine />
+              </span>
+              Report Tweet
+            </MenuOption>
+          </IconContext.Provider>
         </MenuContainer>
       )}
     </>

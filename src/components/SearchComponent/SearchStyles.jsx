@@ -9,7 +9,6 @@ export const SearchBoxContainer = styled.div`
   border-radius: 50px;
   height: 50px;
   margin: 0 auto;
-  width: clamp(300px, 90%, 600px);
   &:hover {
     border: 1px solid ${Colors.Blue};
     background: #fff;
@@ -47,7 +46,6 @@ export const ResultsContainer = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
-  width: clamp(300px, 90%, 600px);
   margin: 0 auto;
   height: fit-content;
   max-height: 100%;

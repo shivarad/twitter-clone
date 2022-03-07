@@ -22,8 +22,8 @@ const TweetComponent = ({ tweet }) => {
 
   useEffect(() => {
     setUser(users.filter((user) => user.user === tweet.user)[0]);
-    console.log(user)
-  }, [user,tweet]);
+    console.log(user);
+  }, [user, tweet]);
   const calculateTimeDiff = () => {
     let Now = new Date(Date.now());
     let TweetDate = new Date(tweet.created_on);
@@ -73,63 +73,95 @@ const TweetComponent = ({ tweet }) => {
     return replacedText;
   };
   return (
-    user&&<TweetContainer>
-      <Avatar image={user.profile_picture} />
-      <TweetContent>
-        <TweetHeader>
-          <p>
-            {user.display_name}
-            <span>
-              {" @"}
-              {tweet.user}
-              {" . "}
-              {calculateTimeDiff().toString()}
-            </span>
-          </p>
-          <IconButton
-            icon={<MdOutlineMoreHoriz />}
-            blue="true"
-            action="true"
-            tooltip="More"
-            onClick={(e) => {
-              e.preventDefault();
-              setMenuOpen(true);
-            }}
-          />
-          <Menu open={menuOpen} user={tweet.user} setOpen={setMenuOpen} />
-        </TweetHeader>
-        <p>{TweetReplacing(tweet.content)}</p>
-        {tweet.imageUrl && (
-          <img
-            src={tweet.imageUrl}
-            alt="tweet"
-            style={{
-              maxWidth: "600px",
-              border: `1px solid ${Colors.LightGray}`,
-              borderRadius: "15px",
-            }}
-            loading="lazy"
-          />
-        )}
-        <TweetActions>
-          <span>
-            <FaRegComment />
-            <p>{tweet.comments_count}</p>
-          </span>
-          <span>
-            <FaRetweet className="green" />
-            <p>{tweet.retweets_count}</p>
-          </span>
-          <span>
-            <FaRegHeart className="red" />
-            <p>{tweet.favorites_count}</p>
-          </span>
-          <span>
-            <MdOutlineFileUpload className="blue" />
-          </span>
-        </TweetActions>
-      </TweetContent>
-    </TweetContainer>
+    user && (
+      <div style={{ position: "relative" }}>
+        <Menu open={menuOpen} user={tweet.user} setOpen={setMenuOpen} />
+        <TweetContainer>
+          <Avatar image={user.profile_picture} />
+          <TweetContent>
+            <TweetHeader>
+              <p>
+                {user.display_name}
+                <span>
+                  {" @"}
+                  {tweet.user}
+                  {" . "}
+                  {calculateTimeDiff().toString()}
+                </span>
+              </p>
+              <IconButton
+                color={Colors.LightGray}
+                hover={Colors.ExtraLightGray}
+                hoverColor={Colors.Blue}
+                icon={<MdOutlineMoreHoriz />}
+                action="true"
+                tooltip="More"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setMenuOpen(true);
+                }}
+              />
+            </TweetHeader>
+            <p style={{ lineHeight: "20px" }}>
+              {TweetReplacing(tweet.content)}
+            </p>
+            {tweet.imageUrl && (
+              <img
+                src={tweet.imageUrl}
+                alt="tweet"
+                style={{
+                  width: "clamp(220px,80%,600px)",
+                  border: `1px solid ${Colors.LightGray}`,
+                  borderRadius: "15px",
+                }}
+                loading="lazy"
+              />
+            )}
+            <TweetActions>
+              <span className="blue">
+                <IconButton
+                  icon={<FaRegComment />}
+                  color={Colors.LightGray}
+                  hover={Colors.LightBlue}
+                  hoverColor={Colors.Blue}
+                  action="true"
+                />
+                {tweet.comments_count}
+              </span>
+              <span className="green">
+                <IconButton
+                  icon={<FaRetweet />}
+                  color={Colors.LightGray}
+                  hover="lightgreen"
+                  hoverColor="green"
+                  action="true"
+                />
+                {tweet.retweets_count}
+              </span>
+              <span className="red">
+                <IconButton
+                  icon={<FaRegHeart />}
+                  color={Colors.LightGray}
+                  hover="lightpink"
+                  hoverColor="red"
+                  action="true"
+                />
+                {tweet.favorites_count}
+              </span>
+              <span className="blue">
+                <IconButton
+                  icon={<MdOutlineFileUpload />}
+                  color={Colors.LightGray}
+                  hover={Colors.LightBlue}
+                  hoverColor={Colors.Blue}
+                  action="true"
+                />
+              </span>
+            </TweetActions>
+          </TweetContent>
+        </TweetContainer>
+      </div>
+    )
   );
 };
 

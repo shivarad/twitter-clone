@@ -24,7 +24,9 @@ const Search = () => {
   useEffect(() => {
     if (searchValue !== "") {
       setTopicResults(
-        topics.filter((topic) => topic.topic.toLowerCase().includes(searchValue))
+        topics.filter((topic) =>
+          topic.topic.toLowerCase().includes(searchValue)
+        )
       );
       setUserResults(
         users.filter(
@@ -50,7 +52,7 @@ const Search = () => {
     };
   }, [setResultVisible]);
   return (
-    <div style={{ height: "100%" }}>
+    <div style={{ height: "100%", width: "100%" }}>
       <SearchBoxContainer onClick={() => setResultVisible(true)}>
         <SearchBtn aria-label="Search">
           <BsSearch />

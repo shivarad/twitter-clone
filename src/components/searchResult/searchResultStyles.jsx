@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Colors } from "../../styles/colors";
 
-export const ResultContainer=styled.div`
+export const ResultContainer = styled.div`
 display:flex;
 align-items:center;
 padding:10px 20px;
@@ -18,16 +18,16 @@ padding:10px 20px;
 }
 `;
 
-export const ResultContent=styled.div`
-display:flex;
-flex-direction:column;
-align-items:start;
+export const ResultContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: start;
 `;
 
-export const Header=styled.div`
-color:${Colors.Black};
-font-weight:bold;
+export const Header = styled.div`
+  color: ${Colors.Black};
+  font-weight: bold;
 `;
-export const Content=styled.div`
-color:${Colors.LightGray};
+export const Content = styled.div`
+  color: ${Colors.LightGray};
 `;

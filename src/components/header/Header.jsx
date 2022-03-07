@@ -1,16 +1,11 @@
-import { HeaderContainer,Title } from "./HeaderStyles";
+import { HeaderContainer, Title } from "./HeaderStyles";
 
-
-
-
-const Header=({title})=>{
-
-    return(
+const Header = ({ title }) => {
+  return (
     <HeaderContainer>
-        <Title>{title}</Title>
+      <Title>{title}</Title>
     </HeaderContainer>
-    )
-}
-
+  );
+};
 
 export default Header;
