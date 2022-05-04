@@ -25,10 +25,7 @@ export const Button = styled.button`
       padding: 0;
     }
   }
-  &:hover {
-    background: ${(props) => props.hover};
-    color: ${(props) => (props.hoverColor ? props.hoverColor : props.color)};
-  }
+
 `;
 
 export const CustomTooltip = styled(ReactTooltip)`
